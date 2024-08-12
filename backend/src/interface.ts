@@ -1,8 +1,17 @@
 /**
  * @description User-Service parameters
  */
-export interface IUserOptions {
-  uid: number;
-  phone: number;
-  email: string;
+import { EntityModel, } from '@midwayjs/orm';
+import { BaseEntity, PrimaryGeneratedColumn, Column, } from 'typeorm';
+
+@EntityModel()
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column({ unique: true })
+  username: string;
+  @Column()
+  password: string;
+  @Column()
+  boards: object;
 }

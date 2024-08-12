@@ -8,11 +8,24 @@ import * as crossDomain from '@midwayjs/cross-domain';
 // import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
+import { createConnection } from 'typeorm';
+import { ORMConfig } from './config/config.orm';
 
+@Configuration({
+  importConfigs: [join(__dirname, 'config')],
+})
+export class ContainerLifeCycle {
+  @App()
+  app: any;
+
+  async onReady() {
+    await createConnection(ORMConfig);
+  }
+}
 @Configuration({
   imports: [
     koa,
-    validate,crossDomain,
+    validate, crossDomain,
     {
       component: info,
       enabledEnvironment: ['local'],

@@ -13,9 +13,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../public/test.png");
+    background-image: url("../public/login.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 
 }
 
